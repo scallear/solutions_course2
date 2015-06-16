@@ -1,0 +1,17 @@
+<%= render 'shared/content_title', title: 'All Posts' %>
+
+<% @posts.each do |post| %>
+  <div class='row'>
+    <div class='span8 well'>
+      <%= render post.categories %>
+      <h4><%= link_to post.title, post.url %> (<%= link_to "Edit", edit_post_path(post) %>)</h4>
+      <p><%= post.description %></p>
+      <p>
+        <span class='quiet'>posted by <%= post.creator ? post.creator.username : 'no author listed' %> at <%= post.created_at %></span>
+      </p>
+      <p>
+        <%= link_to "Comments (#{post.comments.size})", post_path(post) %>
+      </p>
+    </div>
+  </div>
+<% end %>
